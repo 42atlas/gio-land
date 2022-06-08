@@ -1,0 +1,24 @@
+* {
+  background-color: rgb(134, 135, 247);
+  font-family: "Press Start 2P", cursive;
+}
+
+/* body {
+  align-self: center;
+} */
+
+.title {
+  color: #ffffff;
+}
+
+.canvas-container {
+  width: 100%;
+  text-align: center;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  /* align-self: center; */
+}
+
+
+/*# sourceMappingURL=/game.d3945fda.css.map */

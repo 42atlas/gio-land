@@ -1,0 +1,28 @@
+{
+  "name": "gio-land",
+  "version": "1.0.0",
+  "description": "Gio Land, an amazing platform game",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "gio",
+    "land",
+    "platform",
+    "game",
+    "kaboom"
+  ],
+  "author": "Andrea Raffaelli",
+  "license": "ISC",
+  "dependencies": {
+    "parcel-bundler": "^1.12.5",
+    "parcel-plugin-clean-easy": "^1.0.2",
+    "parcel-plugin-static-files-copy": "^2.6.0"
+  },
+  "staticFiles": {
+    "staticPath": "public",
+    "watcherGlob": "**"
+  }
+}
