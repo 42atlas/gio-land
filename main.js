@@ -47,7 +47,7 @@ loadSound("flower-chomp", "flower-chomp.mp3");
 loadSound("noce", "noce.wav");
 loadSound("pizzas", "pizza.mp3");
 
-//soundtrack
+// soundtrack
 loadSound("level0", "level0.mp3");
 loadSound("level1", "level1.mp3");
 loadSound("level2", "level2.mp3");
@@ -305,7 +305,7 @@ const levelConf = {
   ],
 };
 
-//scene START
+// scene START
 
 scene("start", () => {
   add([
@@ -335,7 +335,7 @@ scene("start", () => {
 
 go("start");
 
-//scene LOSE
+// scene LOSE
 
 scene("lose", (score, time) => {
   add([
@@ -373,8 +373,8 @@ scene("lose", (score, time) => {
 
   onKeyRelease("enter", () => go("game"));
 
-  //highscore
-  /*   
+  // highscore
+  /*
   add([
     text(`Insert name to record highscore:`, { size: 5, font: "sink" }),
     pos(width() / 2, height() / 2 + 20),
@@ -408,7 +408,7 @@ scene("lose", (score, time) => {
 
   /*  onKeyPress("enter", () => go("game")); */
 
-  //buttons function
+  // buttons function
 
   /* function addButton(txt, p, f) {
     const btn = add([
@@ -440,7 +440,7 @@ scene("lose", (score, time) => {
   onUpdate(() => cursor("default")); */
 });
 
-//scene WIN
+// scene WIN
 
 scene("win", (score, time) => {
   add([
@@ -484,7 +484,7 @@ scene("win", (score, time) => {
   onKeyRelease("enter", () => go("game"));
 });
 
-//scene GAME
+// scene GAME
 
 scene("game", (levelNumber = 0, score = 0, time = 0) => {
   layers(["bg", "game", "ui"], "game");
@@ -552,7 +552,7 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
     lifespan(1, { fade: 0.5 }),
   ]);
 
-  //timer
+  // timer
   add([
     text("TIME: ", { size: 8, font: "sink" }),
     pos(20, 10),
@@ -575,7 +575,7 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
     timer.text = time.toFixed(2);
   });
 
-  //score
+  // score
 
   add([
     text("SCORE: ", { size: 8, font: "sink" }),
@@ -598,7 +598,7 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
     scoreText.text = score;
   }
 
-  //directions
+  // directions
 
   const directions = {
     LEFT: "left",
@@ -607,7 +607,7 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
 
   let current_direction = directions.RIGHT;
 
-  //player
+  // player
 
   const player = level.spawn("p", 1, 10);
 
@@ -641,7 +641,7 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
     });
   });
 
-  //grow
+  // grow
 
   function grow(rate) {
     return {
@@ -673,7 +673,7 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
     }
   }
 
-  //shooting gio
+  // shooting gio
 
   function spawnBullet(p) {
     if (current_direction == directions.LEFT) {
@@ -732,7 +732,7 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
     addExplode(b.pos, 1, 24, 1);
   });
 
-  //shooting dito
+  // shooting dito
 
   /*   const dito = get("dito");
 
@@ -753,12 +753,12 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
 
   onUpdate("rachet", (b) => {
     b.move(b.bulletSpeed, 0);
-   
+
   });
 
   onUpdate("dito", (d) => {
     spawnRachet(d.pos.sub(-4, 10));
-    
+
     play("noce", {
       volume: 0.1,
       detune: rand(-1200, 1200),
@@ -813,7 +813,8 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
     _dito.enterState("idle");
   });
 
-  // Like .onUpdate() which runs every frame, but only runs when the current state is "move"
+  // Like .onUpdate() which runs every frame, but only runs when the current
+  state is "move"
   // Here we move towards the player every frame if the current state is "move"
   _dito.onStateUpdate("move", () => {
     if (!player.exists()) return;
@@ -821,8 +822,8 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
     _dito.move(dir.scale(DITO_SPEED));
   });
 
-  // Have to manually call enterState() to trigger the onStateEnter("move") event we defined above.
-  _dito.enterState("move");
+  // Have to manually call enterState() to trigger the onStateEnter("move")
+  event we defined above. _dito.enterState("move");
 
   // Taking a bullet makes us disappear
   player.onCollide("rachet", (bullet) => {
@@ -831,7 +832,7 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
     addKaboom(bullet.pos);
   }); */
 
-  //Killed
+  // Killed
 
   function killed() {
     // is dead :(
@@ -871,7 +872,7 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
     }
   });
 
-  //collision with badguys
+  // collision with badguys
 
   let canSquash = false;
 
@@ -946,7 +947,7 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
     }
   });
 
-  //headbutt
+  // headbutt
 
   player.on("headbutt", (obj) => {
     if (obj.is("questionBox")) {
@@ -984,7 +985,7 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
     }
   });
 
-  //fungo & fiore & pizza
+  // fungo & fiore & pizza
 
   player.onCollide("bigMushy", (mushy) => {
     destroy(mushy);
@@ -1020,7 +1021,7 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
     ]);
   });
 
-  //castle
+  // castle
 
   player.onCollide("castle", (castle, side) => {
     player.freeze();
@@ -1049,7 +1050,7 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
     });
   });
 
-  //shark move
+  // shark move
 
   onUpdate("shark", (s) => {
     s.move(0, -s.speed);
@@ -1060,7 +1061,7 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
   });
 });
 
-//patrol function
+// patrol function
 
 function patrol(distance = 100, speed = 50, dir = 1) {
   return {
@@ -1085,7 +1086,7 @@ function patrol(distance = 100, speed = 50, dir = 1) {
   };
 }
 
-//enemies set
+// enemies set
 
 function tarma() {
   return {
@@ -1159,7 +1160,7 @@ function shark() {
   };
 }
 
-//general bump
+// general bump
 
 function bump(offset = 8, speed = 2, stopAtOrigin = true) {
   return {
@@ -1190,7 +1191,7 @@ function bump(offset = 8, speed = 2, stopAtOrigin = true) {
   };
 }
 
-//GIO
+// GIO
 function mario() {
   return {
     id: "mario",
@@ -1287,7 +1288,8 @@ function mario() {
       } else {
         animation = this.smallAnimation;
       }
-      /* const animation = this.isBig ? this.bigAnimation : this.smallAnimation; */
+      /* const animation = this.isBig ? this.bigAnimation : this.smallAnimation;
+       */
       if (this.curAnim() !== animation) {
         this.play(animation);
       }
