@@ -1,14 +1,14 @@
 kaboom({
-  global : true,
+  global: true,
 
-  background : [ 134, 135, 247 ],
-  width : 320,
-  height : 240,
-  scale : 3,
-  canvas : document.getElementById("game"),
-  font : "sink",
-  fullscreen : true,
-  scaleMode : "stretch",
+  background: [134, 135, 247],
+  width: 320,
+  height: 240,
+  scale: 3,
+  canvas: document.getElementById("game"),
+  font: "sink",
+  fullscreen: true,
+  scaleMode: "stretch",
 });
 
 const MAP_WIDTH = 320;
@@ -130,188 +130,206 @@ const LEVELS = [
 
 const levelConf = {
   // grid size
-  width : 16,
-  height : 16,
-  pos : vec2(0, 0),
+  width: 16,
+  height: 16,
+  pos: vec2(0, 0),
   // define each object as a list of components
-  "=" : () => [sprite("ground"),
-               area(),
-               solid(),
-               origin("bot"),
-               "ground",
-               "wall",
-],
-  "-" :
-      () => [sprite("brick"), area(), solid(), origin("bot"), "brick", "wall"],
-  H : () => [sprite("castle"),
-             area({width : 1, height : 240}),
+  "=": () => [
+    sprite("ground"),
+    area(),
+    solid(),
+    origin("bot"),
+    "ground",
+    "wall",
+  ],
+  "-": () => [sprite("brick"), area(), solid(), origin("bot"), "brick", "wall"],
+  H: () => [
+    sprite("castle"),
+    area({ width: 1, height: 240 }),
 
-             origin("bot"),
-             "castle",
-],
-  "?" : () => [sprite("questionBox"),
-               area(),
-               solid(),
-               origin("bot"),
-               "questionBox",
-               "coinBox",
-               "wall",
-],
-  b : () => [sprite("questionBox"),
-             area(),
-             solid(),
-             origin("bot"),
-             "questionBox",
-             "mushyBox",
-             "wall",
-],
-  f : () => [sprite("questionBox"),
-             area(),
-             solid(),
-             origin("bot"),
-             "questionBox",
-             "flowerBox",
-             "wall",
-],
-  u : () => [sprite("questionBox"),
-             area(),
-             solid(),
-             origin("bot"),
-             "questionBox",
-             "pizzaBox",
-             "wall",
-],
-  "!" : () => [sprite("emptyBox"),
-               area(),
-               solid(),
-               bump(),
-               origin("bot"),
-               "emptyBox",
-               "wall",
-],
-  c : () => [sprite("coin"),
-             area(),
-             solid(),
-             bump(64, 8),
-             cleanup(),
-             lifespan(1, {fade : 0.5}),
-             origin("bot"),
-             "coin",
-],
-  M : () => [sprite("bigMushy"),
-             area(),
-             solid(),
-             patrol(10000),
-             body(),
-             cleanup(),
-             origin("bot"),
-             "bigMushy",
-],
-  F : () => [sprite("Flower"),
-             area(),
-             solid(),
-             body(),
-             cleanup(),
-             origin("bot"),
-             "Flower",
-],
-  U : () => [sprite("pizza"),
-             area(),
-             solid(),
-             body(),
-             cleanup(),
-             origin("bot"),
-             "pizza",
-],
-  "|" : () => [sprite("pipeBottom"),
-               area(),
-               solid(),
-               origin("bot"),
-               "pipe",
-               "wall",
-],
-  _ : () => [sprite("pipeTop"), area(), solid(), origin("bot"), "pipe", "wall"],
-  E : () => [sprite("enemies", {anim : "Walking"}),
-             area({width : 20, height : 24}),
-             solid(),
-             body(),
-             patrol(50),
-             tarma(),
-             origin("bot"),
-             "badGuy",
-             "enemy",
-],
-  A : () => [sprite("enemies", {anim : "Walk"}),
-             area({width : 26, height : 20}),
-             solid(),
-             body(),
-             patrol(100),
-             ami(),
-             origin("bot"),
-             "badGuy",
-             "enemy",
-],
-  D : () => [sprite("enemies", {anim : "WalkHB"}),
-             area({width : 20, height : 28}),
-             solid(),
-             body(),
-             patrol(50),
-             dito(),
-             /* state("move", ["idle", "attack", "move"]), */
-             origin("bot"),
-             "badGuy",
-             "enemy",
-             /* "dito", */
-],
-  Y : () => [sprite("enemies", {anim : "Piranha"}),
-             area({width : 20, height : 28}),
-             /* solid(), */
-             /* body(), */
-             shark(),
-             origin("top"),
-             "shark",
-             "badGuyShark",
-             "enemy",
-             {
-               speed : 20,
-             },
-],
-  p : () => [sprite("mario", {frame : 0}),
-             area({width : 16, height : 16}),
-             body(),
-             mario(),
-             bump(150, 20, false),
-             origin("bot"),
-             "player",
-             {
-               score : 0,
-             },
-],
+    origin("bot"),
+    "castle",
+  ],
+  "?": () => [
+    sprite("questionBox"),
+    area(),
+    solid(),
+    origin("bot"),
+    "questionBox",
+    "coinBox",
+    "wall",
+  ],
+  b: () => [
+    sprite("questionBox"),
+    area(),
+    solid(),
+    origin("bot"),
+    "questionBox",
+    "mushyBox",
+    "wall",
+  ],
+  f: () => [
+    sprite("questionBox"),
+    area(),
+    solid(),
+    origin("bot"),
+    "questionBox",
+    "flowerBox",
+    "wall",
+  ],
+  u: () => [
+    sprite("questionBox"),
+    area(),
+    solid(),
+    origin("bot"),
+    "questionBox",
+    "pizzaBox",
+    "wall",
+  ],
+  "!": () => [
+    sprite("emptyBox"),
+    area(),
+    solid(),
+    bump(),
+    origin("bot"),
+    "emptyBox",
+    "wall",
+  ],
+  c: () => [
+    sprite("coin"),
+    area(),
+    solid(),
+    bump(64, 8),
+    cleanup(),
+    lifespan(1, { fade: 0.5 }),
+    origin("bot"),
+    "coin",
+  ],
+  M: () => [
+    sprite("bigMushy"),
+    area(),
+    solid(),
+    patrol(10000),
+    body(),
+    cleanup(),
+    origin("bot"),
+    "bigMushy",
+  ],
+  F: () => [
+    sprite("Flower"),
+    area(),
+    solid(),
+    body(),
+    cleanup(),
+    origin("bot"),
+    "Flower",
+  ],
+  U: () => [
+    sprite("pizza"),
+    area(),
+    solid(),
+    body(),
+    cleanup(),
+    origin("bot"),
+    "pizza",
+  ],
+  "|": () => [
+    sprite("pipeBottom"),
+    area(),
+    solid(),
+    origin("bot"),
+    "pipe",
+    "wall",
+  ],
+  _: () => [sprite("pipeTop"), area(), solid(), origin("bot"), "pipe", "wall"],
+  E: () => [
+    sprite("enemies", { anim: "Walking" }),
+    area({ width: 20, height: 24 }),
+    solid(),
+    body(),
+    patrol(50),
+    tarma(),
+    origin("bot"),
+    "badGuy",
+    "enemy",
+  ],
+  A: () => [
+    sprite("enemies", { anim: "Walk" }),
+    area({ width: 26, height: 20 }),
+    solid(),
+    body(),
+    patrol(100),
+    ami(),
+    origin("bot"),
+    "badGuy",
+    "enemy",
+  ],
+  D: () => [
+    sprite("enemies", { anim: "WalkHB" }),
+    area({ width: 20, height: 28 }),
+    solid(),
+    body(),
+    patrol(50),
+    dito(),
+    /* state("move", ["idle", "attack", "move"]), */
+    origin("bot"),
+    "badGuy",
+    "enemy",
+    /* "dito", */
+  ],
+  Y: () => [
+    sprite("enemies", { anim: "Piranha" }),
+    area({ width: 20, height: 28 }),
+    /* solid(), */
+    /* body(), */
+    shark(),
+    origin("top"),
+    "shark",
+    "badGuyShark",
+    "enemy",
+    {
+      speed: 20,
+    },
+  ],
+  p: () => [
+    sprite("mario", { frame: 0 }),
+    area({ width: 16, height: 16 }),
+    body(),
+    mario(),
+    bump(150, 20, false),
+    origin("bot"),
+    "player",
+    {
+      score: 0,
+    },
+  ],
 };
 
 // scene START
 
 scene("start", () => {
   add([
-    text("Press enter to play", {size : 10}),
+    text("Press enter to play", { size: 10 }),
     pos(160, 100),
     origin("center"),
     color(255, 255, 255),
   ]);
   add([
-    text("Use the arrows to move", {size : 8}),
+    text("Use the arrows to move", { size: 8 }),
     pos(160, 140),
     origin("center"),
     color(255, 255, 255),
   ]);
   add([
-    text("and the spacebar eventually", {size : 8}),
+    text("and the spacebar eventually", { size: 8 }),
     pos(160, 150),
     origin("center"),
     color(255, 255, 255),
   ]);
 
-  onKeyRelease("enter", () => { go("game"); });
+  onKeyRelease("enter", () => {
+    go("game");
+  });
   /* onClick(() => go("game")); */
 });
 
@@ -321,7 +339,7 @@ go("start");
 
 scene("lose", (score, time) => {
   add([
-    sprite("mario", {frame : 6}),
+    sprite("mario", { frame: 6 }),
     pos(width() / 2, height() / 2 - 80),
     scale(2),
     origin("center"),
@@ -329,7 +347,7 @@ scene("lose", (score, time) => {
 
   // display score
   add([
-    text(`Score:${score}`, {size : 8, font : "sink"}),
+    text(`Score:${score}`, { size: 8, font: "sink" }),
     pos(width() / 2, height() / 2 - 30),
     scale(2),
     origin("center"),
@@ -338,7 +356,7 @@ scene("lose", (score, time) => {
 
   // display time
   add([
-    text(`Time:${time.toFixed(2)}`, {size : 8, font : "sink"}),
+    text(`Time:${time.toFixed(2)}`, { size: 8, font: "sink" }),
     pos(width() / 2, height() / 2 - 0),
     scale(2),
     origin("center"),
@@ -346,7 +364,7 @@ scene("lose", (score, time) => {
   ]);
 
   add([
-    text(`Press enter to play again`, {size : 6, font : "sink"}),
+    text(`Press enter to play again`, { size: 6, font: "sink" }),
     pos(width() / 2, height() / 2 + 60),
     scale(2),
     origin("center"),
@@ -432,14 +450,14 @@ scene("win", (score, time) => {
     origin("center"),
   ]);
   add([
-    sprite("mario", {frame : 13}),
+    sprite("mario", { frame: 13 }),
     pos(width() / 2, height() / 2 - 60),
     scale(2),
     origin("center"),
   ]);
 
   add([
-    text(`Score:${score}`, {size : 8, font : "sink"}),
+    text(`Score:${score}`, { size: 8, font: "sink" }),
     pos(width() / 2, height() / 2 - 20),
     scale(2),
     origin("center"),
@@ -448,7 +466,7 @@ scene("win", (score, time) => {
 
   // display time
   add([
-    text(`Time:${time.toFixed(2)}`, {size : 8, font : "sink"}),
+    text(`Time:${time.toFixed(2)}`, { size: 8, font: "sink" }),
     pos(width() / 2, height() / 2 + 10),
     scale(2),
     origin("center"),
@@ -456,7 +474,7 @@ scene("win", (score, time) => {
   ]);
 
   add([
-    text(`Press enter to play again`, {size : 6, font : "sink"}),
+    text(`Press enter to play again`, { size: 6, font: "sink" }),
     pos(width() / 2, height() / 2 + 70),
     scale(2),
     origin("center"),
@@ -469,74 +487,74 @@ scene("win", (score, time) => {
 // scene GAME
 
 scene("game", (levelNumber = 0, score = 0, time = 0) => {
-  layers([ "bg", "game", "ui" ], "game");
+  layers(["bg", "game", "ui"], "game");
 
   /* gravity(2200); */
 
   const level = addLevel(LEVELS[levelNumber], levelConf);
 
   const music = play(`level${levelNumber}`, {
-    volume : 0.2,
-    detune : rand(0, 0),
+    volume: 0.2,
+    detune: rand(0, 0),
   });
 
   music.play();
 
-  add([ sprite("cloud"), pos(20, 50), layer("bg") ]);
-  add([ sprite("cloud"), pos(150, 60), layer("bg") ]);
-  add([ sprite("cloud"), pos(320, 40), layer("bg") ]);
-  add([ sprite("cloud"), pos(520, 50), layer("bg") ]);
-  add([ sprite("cloud"), pos(620, 70), layer("bg") ]);
-  add([ sprite("cloud"), pos(820, 40), layer("bg") ]);
-  add([ sprite("cloud"), pos(1020, 70), layer("bg") ]);
-  add([ sprite("cloud"), pos(1190, 50), layer("bg") ]);
-  add([ sprite("cloud"), pos(1300, 80), layer("bg") ]);
-  add([ sprite("cloud"), pos(1420, 60), layer("bg") ]);
-  add([ sprite("cloud"), pos(1560, 50), layer("bg") ]);
-  add([ sprite("cloud"), pos(1720, 60), layer("bg") ]);
-  add([ sprite("cloud"), pos(1950, 40), layer("bg") ]);
-  add([ sprite("cloud"), pos(1820, 50), layer("bg") ]);
-  add([ sprite("cloud"), pos(2000, 70), layer("bg") ]);
-  add([ sprite("cloud"), pos(2200, 40), layer("bg") ]);
-  add([ sprite("cloud"), pos(2350, 70), layer("bg") ]);
-  add([ sprite("cloud"), pos(2450, 50), layer("bg") ]);
-  add([ sprite("cloud"), pos(2600, 80), layer("bg") ]);
-  add([ sprite("cloud"), pos(3200, 60), layer("bg") ]);
+  add([sprite("cloud"), pos(20, 50), layer("bg")]);
+  add([sprite("cloud"), pos(150, 60), layer("bg")]);
+  add([sprite("cloud"), pos(320, 40), layer("bg")]);
+  add([sprite("cloud"), pos(520, 50), layer("bg")]);
+  add([sprite("cloud"), pos(620, 70), layer("bg")]);
+  add([sprite("cloud"), pos(820, 40), layer("bg")]);
+  add([sprite("cloud"), pos(1020, 70), layer("bg")]);
+  add([sprite("cloud"), pos(1190, 50), layer("bg")]);
+  add([sprite("cloud"), pos(1300, 80), layer("bg")]);
+  add([sprite("cloud"), pos(1420, 60), layer("bg")]);
+  add([sprite("cloud"), pos(1560, 50), layer("bg")]);
+  add([sprite("cloud"), pos(1720, 60), layer("bg")]);
+  add([sprite("cloud"), pos(1950, 40), layer("bg")]);
+  add([sprite("cloud"), pos(1820, 50), layer("bg")]);
+  add([sprite("cloud"), pos(2000, 70), layer("bg")]);
+  add([sprite("cloud"), pos(2200, 40), layer("bg")]);
+  add([sprite("cloud"), pos(2350, 70), layer("bg")]);
+  add([sprite("cloud"), pos(2450, 50), layer("bg")]);
+  add([sprite("cloud"), pos(2600, 80), layer("bg")]);
+  add([sprite("cloud"), pos(3200, 60), layer("bg")]);
 
-  add([ sprite("hill"), pos(32, 208), layer("bg"), origin("bot") ]);
-  add([ sprite("hill"), pos(409, 208), layer("bg"), origin("bot") ]);
-  add([ sprite("hill"), pos(803, 208), layer("bg"), origin("bot") ]);
-  add([ sprite("hill"), pos(1200, 208), layer("bg"), origin("bot") ]);
-  add([ sprite("hill"), pos(1500, 208), layer("bg"), origin("bot") ]);
-  add([ sprite("hill"), pos(1920, 208), layer("bg"), origin("bot") ]);
-  add([ sprite("hill"), pos(2300, 208), layer("bg"), origin("bot") ]);
-  add([ sprite("hill"), pos(2700, 208), layer("bg"), origin("bot") ]);
-  add([ sprite("hill"), pos(3000, 208), layer("bg"), origin("bot") ]);
-  add([ sprite("hill"), pos(3500, 208), layer("bg"), origin("bot") ]);
+  add([sprite("hill"), pos(32, 208), layer("bg"), origin("bot")]);
+  add([sprite("hill"), pos(409, 208), layer("bg"), origin("bot")]);
+  add([sprite("hill"), pos(803, 208), layer("bg"), origin("bot")]);
+  add([sprite("hill"), pos(1200, 208), layer("bg"), origin("bot")]);
+  add([sprite("hill"), pos(1500, 208), layer("bg"), origin("bot")]);
+  add([sprite("hill"), pos(1920, 208), layer("bg"), origin("bot")]);
+  add([sprite("hill"), pos(2300, 208), layer("bg"), origin("bot")]);
+  add([sprite("hill"), pos(2700, 208), layer("bg"), origin("bot")]);
+  add([sprite("hill"), pos(3000, 208), layer("bg"), origin("bot")]);
+  add([sprite("hill"), pos(3500, 208), layer("bg"), origin("bot")]);
 
-  add([ sprite("shrubbery"), pos(200, 208), layer("bg"), origin("bot") ]);
-  add([ sprite("shrubbery"), pos(680, 208), layer("bg"), origin("bot") ]);
-  add([ sprite("shrubbery"), pos(480, 208), layer("bg"), origin("bot") ]);
-  add([ sprite("shrubbery"), pos(1080, 208), layer("bg"), origin("bot") ]);
-  add([ sprite("shrubbery"), pos(1250, 208), layer("bg"), origin("bot") ]);
-  add([ sprite("shrubbery"), pos(1480, 208), layer("bg"), origin("bot") ]);
-  add([ sprite("shrubbery"), pos(1904, 208), layer("bg"), origin("bot") ]);
-  add([ sprite("shrubbery"), pos(2230, 208), layer("bg"), origin("bot") ]);
-  add([ sprite("shrubbery"), pos(2940, 208), layer("bg"), origin("bot") ]);
-  add([ sprite("shrubbery"), pos(3600, 208), layer("bg"), origin("bot") ]);
+  add([sprite("shrubbery"), pos(200, 208), layer("bg"), origin("bot")]);
+  add([sprite("shrubbery"), pos(680, 208), layer("bg"), origin("bot")]);
+  add([sprite("shrubbery"), pos(480, 208), layer("bg"), origin("bot")]);
+  add([sprite("shrubbery"), pos(1080, 208), layer("bg"), origin("bot")]);
+  add([sprite("shrubbery"), pos(1250, 208), layer("bg"), origin("bot")]);
+  add([sprite("shrubbery"), pos(1480, 208), layer("bg"), origin("bot")]);
+  add([sprite("shrubbery"), pos(1904, 208), layer("bg"), origin("bot")]);
+  add([sprite("shrubbery"), pos(2230, 208), layer("bg"), origin("bot")]);
+  add([sprite("shrubbery"), pos(2940, 208), layer("bg"), origin("bot")]);
+  add([sprite("shrubbery"), pos(3600, 208), layer("bg"), origin("bot")]);
 
   add([
-    text("Level " + (levelNumber + 1), {size : 18}),
+    text("Level " + (levelNumber + 1), { size: 18 }),
     pos(vec2(160, 120)),
     color(255, 255, 255),
     origin("center"),
     layer("ui"),
-    lifespan(1, {fade : 0.5}),
+    lifespan(1, { fade: 0.5 }),
   ]);
 
   // timer
   add([
-    text("TIME: ", {size : 8, font : "sink"}),
+    text("TIME: ", { size: 8, font: "sink" }),
     pos(20, 10),
     origin("center"),
     layer("ui"),
@@ -544,10 +562,10 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
   ]);
 
   const timer = add([
-    text(time, {size : 8, font : "sink"}),
+    text(time, { size: 8, font: "sink" }),
     pos(50, 10),
     fixed(),
-    {time : 0},
+    { time: 0 },
     origin("center"),
     layer("ui"),
   ]);
@@ -560,7 +578,7 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
   // score
 
   add([
-    text("SCORE: ", {size : 8, font : "sink"}),
+    text("SCORE: ", { size: 8, font: "sink" }),
     pos(140, 10),
     origin("center"),
     layer("ui"),
@@ -568,7 +586,7 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
   ]);
 
   const scoreText = add([
-    text(score, {size : 8, font : "sink"}),
+    text(score, { size: 8, font: "sink" }),
     pos(170, 10),
     origin("center"),
     layer("ui"),
@@ -583,8 +601,8 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
   // directions
 
   const directions = {
-    LEFT : "left",
-    RIGHT : "right",
+    LEFT: "left",
+    RIGHT: "right",
   };
 
   let current_direction = directions.RIGHT;
@@ -598,16 +616,14 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
 
   onKeyDown("right", () => {
     current_direction = directions.RIGHT;
-    if (player.isFrozen)
-      return;
+    if (player.isFrozen) return;
     player.flipX(false);
     player.move(SPEED, 0);
   });
 
   onKeyDown("left", () => {
     current_direction = directions.LEFT;
-    if (player.isFrozen)
-      return;
+    if (player.isFrozen) return;
     player.flipX(true);
     if (toScreen(player.pos).x > 20) {
       player.move(-SPEED, 0);
@@ -620,8 +636,8 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
       canSquash = true;
     }
     play("jump", {
-      volume : 0.05,
-      detune : rand(-200, 0),
+      volume: 0.05,
+      detune: rand(-200, 0),
     });
   });
 
@@ -674,8 +690,10 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
       cleanup(),
       "bullet",
       {
-        bulletSpeed : current_direction == directions.LEFT ? -1 * BULLET_SPEED
-                                                           : BULLET_SPEED,
+        bulletSpeed:
+          current_direction == directions.LEFT
+            ? -1 * BULLET_SPEED
+            : BULLET_SPEED,
       },
     ]);
   }
@@ -692,11 +710,14 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
       spawnBullet(player.pos.sub(-4, 10));
       /* spawnBullet(player.pos.add(3, 0)); */
       play("noce", {
-        volume : 0.1,
-        detune : rand(-1200, 1200),
+        volume: 0.1,
+        detune: rand(-1200, 1200),
       });
     }
-    wait(0.2), () => { return; };
+    wait(0.2),
+      () => {
+        return;
+      };
   });
 
   onCollide("bullet", "enemy", (b, e) => {
@@ -815,12 +836,11 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
 
   function killed() {
     // is dead :(
-    if (player.isAlive == false)
-      return; // Don't run it if mario is already dead
+    if (player.isAlive == false) return; // Don't run it if mario is already dead
     player.die();
     music.pause();
     add([
-      text("Gio is dead :(", {size : 24}),
+      text("Gio is dead :(", { size: 24 }),
       pos(toWorld(vec2(160, 120))),
       color(255, 255, 255),
       origin("center"),
@@ -856,19 +876,19 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
 
   let canSquash = false;
 
-  player.onFall(() => { canSquash = true; });
+  player.onFall(() => {
+    canSquash = true;
+  });
 
   player.onCollide("badGuy", (baddy) => {
-    if (baddy.isAlive == false)
-      return;
-    if (player.isAlive == false)
-      return;
+    if (baddy.isAlive == false) return;
+    if (player.isAlive == false) return;
     if (canSquash) {
       // Mario has jumped on the bad guy:
       baddy.squash();
       play("hit", {
-        volume : 0.2,
-        detune : rand(-100, 0),
+        volume: 0.2,
+        detune: rand(-100, 0),
       });
     } else {
       // Mario has been hurt
@@ -877,8 +897,8 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
         wait(0.25, () => {
           player.bigger();
           play("getsmall", {
-            volume : 0.2,
-            detune : rand(-100, 0),
+            volume: 0.2,
+            detune: rand(-100, 0),
           });
         });
       } else if (player.isBig) {
@@ -886,8 +906,8 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
         wait(0.25, () => {
           player.smaller();
           play("getsmall", {
-            volume : 0.2,
-            detune : rand(-100, 0),
+            volume: 0.2,
+            detune: rand(-100, 0),
           });
         });
       } else {
@@ -899,18 +919,16 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
   });
 
   player.onCollide("badGuyShark", (baddy) => {
-    if (baddy.isAlive == false)
-      return;
-    if (player.isAlive == false)
-      return;
+    if (baddy.isAlive == false) return;
+    if (player.isAlive == false) return;
     // Mario has been hurt
     if (player.isFlamy) {
       shake(10);
       wait(0.25, () => {
         player.bigger();
         play("getsmall", {
-          volume : 0.2,
-          detune : rand(-100, 0),
+          volume: 0.2,
+          detune: rand(-100, 0),
         });
       });
     } else if (player.isBig) {
@@ -918,8 +936,8 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
       wait(0.25, () => {
         player.smaller();
         play("getsmall", {
-          volume : 0.2,
-          detune : rand(-100, 0),
+          volume: 0.2,
+          detune: rand(-100, 0),
         });
       });
     } else {
@@ -938,26 +956,26 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
         coin.bump();
         updateScore(5);
         play("coin", {
-          volume : 0.2,
-          detune : rand(-400, 100),
+          volume: 0.2,
+          detune: rand(-400, 100),
         });
       } else if (obj.is("mushyBox")) {
         level.spawn("M", obj.gridPos.sub(0, 1));
         play("goodbox", {
-          volume : 0.7,
-          detune : rand(-400, 100),
+          volume: 0.7,
+          detune: rand(-400, 100),
         });
       } else if (obj.is("flowerBox")) {
         level.spawn("F", obj.gridPos.sub(0, 1));
         play("goodbox", {
-          volume : 0.7,
-          detune : rand(-400, 100),
+          volume: 0.7,
+          detune: rand(-400, 100),
         });
       } else if (obj.is("pizzaBox")) {
         level.spawn("U", obj.gridPos.sub(0, 1));
         play("goodbox", {
-          volume : 0.7,
-          detune : rand(-400, 100),
+          volume: 0.7,
+          detune: rand(-400, 100),
         });
       }
       var pos = obj.gridPos;
@@ -973,8 +991,8 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
     destroy(mushy);
     player.bigger();
     play("mushroom", {
-      volume : 0.2,
-      detune : rand(-400, 100),
+      volume: 0.2,
+      detune: rand(-400, 100),
     });
   });
 
@@ -982,8 +1000,8 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
     destroy(flower);
     player.flamy();
     play("flower", {
-      volume : 0.2,
-      detune : rand(-400, 100),
+      volume: 0.2,
+      detune: rand(-400, 100),
     });
   });
 
@@ -991,11 +1009,11 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
     destroy(pizza);
     updateScore(55);
     play("pizzas", {
-      volume : 0.2,
-      detune : rand(-400, 100),
+      volume: 0.2,
+      detune: rand(-400, 100),
     });
     add([
-      text("55 POINTS", {size : 12}),
+      text("55 POINTS", { size: 12 }),
       pos(toWorld(vec2(160, 120))),
       color(255, 255, 255),
       origin("center"),
@@ -1009,11 +1027,11 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
     player.freeze();
     music.pause();
     play("stageclear", {
-      volume : 0.2,
-      detune : rand(-200, 100),
+      volume: 0.2,
+      detune: rand(-200, 100),
     });
     add([
-      text("Good Giob!", {size : 24}),
+      text("Good Giob!", { size: 24 }),
       pos(toWorld(vec2(160, 120))),
       color(255, 255, 255),
       origin("center"),
@@ -1047,13 +1065,17 @@ scene("game", (levelNumber = 0, score = 0, time = 0) => {
 
 function patrol(distance = 100, speed = 50, dir = 1) {
   return {
-    id : "patrol",
-    require : [ "pos", "area" ],
-    startingPos : vec2(0, 0),
+    id: "patrol",
+    require: ["pos", "area"],
+    startingPos: vec2(0, 0),
     add() {
       this.startingPos = this.pos;
-      this.onCollide("badGuy", () => { dir = -dir; });
-      this.onCollide("pipe", () => { dir = -dir; });
+      this.onCollide("badGuy", () => {
+        dir = -dir;
+      });
+      this.onCollide("pipe", () => {
+        dir = -dir;
+      });
     },
     update() {
       if (Math.abs(this.pos.x - this.startingPos.x) >= distance) {
@@ -1068,9 +1090,9 @@ function patrol(distance = 100, speed = 50, dir = 1) {
 
 function tarma() {
   return {
-    id : "tarma",
-    require : [ "pos", "area", "sprite", "patrol" ],
-    isAlive : true,
+    id: "tarma",
+    require: ["pos", "area", "sprite", "patrol"],
+    isAlive: true,
     update() {},
     squash() {
       this.isAlive = false;
@@ -1079,16 +1101,16 @@ function tarma() {
       this.frame = 2;
       this.area.width = 18;
       this.area.height = 8;
-      this.use(lifespan(0.5, {fade : 0.1}));
+      this.use(lifespan(0.5, { fade: 0.1 }));
     },
   };
 }
 
 function ami() {
   return {
-    id : "ami",
-    require : [ "pos", "area", "sprite", "patrol" ],
-    isAlive : true,
+    id: "ami",
+    require: ["pos", "area", "sprite", "patrol"],
+    isAlive: true,
     update() {},
     squash() {
       this.isAlive = false;
@@ -1097,16 +1119,16 @@ function ami() {
       this.frame = 5;
       this.area.width = 26;
       this.area.height = 18;
-      this.use(lifespan(0.5, {fade : 0.1}));
+      this.use(lifespan(0.5, { fade: 0.1 }));
     },
   };
 }
 
 function dito() {
   return {
-    id : "dito",
-    require : [ "pos", "area", "sprite", "patrol" /* , "state" */ ],
-    isAlive : true,
+    id: "dito",
+    require: ["pos", "area", "sprite", "patrol" /* , "state" */],
+    isAlive: true,
     update() {},
     squash() {
       this.isAlive = false;
@@ -1115,16 +1137,16 @@ function dito() {
       this.frame = 12;
       this.area.width = 20;
       this.area.height = 22;
-      this.use(lifespan(0.5, {fade : 0.1}));
+      this.use(lifespan(0.5, { fade: 0.1 }));
     },
   };
 }
 
 function shark() {
   return {
-    id : "shark",
-    require : [ "pos", "area", "sprite" ],
-    isAlive : true,
+    id: "shark",
+    require: ["pos", "area", "sprite"],
+    isAlive: true,
     update() {},
     squash() {
       this.isAlive = false;
@@ -1133,7 +1155,7 @@ function shark() {
       this.frame = 12;
       this.area.width = 20;
       this.area.height = 22;
-      this.use(lifespan(0.5, {fade : 0.1}));
+      this.use(lifespan(0.5, { fade: 0.1 }));
     },
   };
 }
@@ -1142,13 +1164,13 @@ function shark() {
 
 function bump(offset = 8, speed = 2, stopAtOrigin = true) {
   return {
-    id : "bump",
-    require : [ "pos" ],
-    bumpOffset : offset,
-    speed : speed,
-    bumped : false,
-    origPos : 0,
-    direction : -1,
+    id: "bump",
+    require: ["pos"],
+    bumpOffset: offset,
+    speed: speed,
+    bumped: false,
+    origPos: 0,
+    direction: -1,
     update() {
       if (this.bumped) {
         this.pos.y = this.pos.y + this.direction * this.speed;
@@ -1172,23 +1194,23 @@ function bump(offset = 8, speed = 2, stopAtOrigin = true) {
 // GIO
 function mario() {
   return {
-    id : "mario",
-    require : [ "body", "area", "sprite", "bump" ],
-    smallAnimation : "Running",
-    bigAnimation : "RunningBig",
-    flameanimation : "Loop",
-    smallStopFrame : 0,
-    bigStopFrame : 8,
-    flameStopFrame : 17,
-    smallJumpFrame : 5,
-    bigJumpFrame : 13,
-    flameJumpFrame : 22,
-    flameShotFrame : 25,
+    id: "mario",
+    require: ["body", "area", "sprite", "bump"],
+    smallAnimation: "Running",
+    bigAnimation: "RunningBig",
+    flameanimation: "Loop",
+    smallStopFrame: 0,
+    bigStopFrame: 8,
+    flameStopFrame: 17,
+    smallJumpFrame: 5,
+    bigJumpFrame: 13,
+    flameJumpFrame: 22,
+    flameShotFrame: 25,
     /* smallDieFrame: 6, */
-    isBig : false,
-    isFrozen : false,
-    isFlamy : false,
-    isAlive : true,
+    isBig: false,
+    isFrozen: false,
+    isFlamy: false,
+    isAlive: true,
     update() {
       if (this.isFrozen) {
         this.standing();
@@ -1272,7 +1294,9 @@ function mario() {
         this.play(animation);
       }
     },
-    freeze() { this.isFrozen = true; },
+    freeze() {
+      this.isFrozen = true;
+    },
     die() {
       /* this.stop();
       this.frame = this.smallDieFrame; */
@@ -1280,10 +1304,10 @@ function mario() {
       this.bump();
       this.isAlive = false;
       this.freeze();
-      this.use(lifespan(6, {fade : 1}));
+      this.use(lifespan(6, { fade: 1 }));
       play("gameover", {
-        volume : 0.2,
-        detune : rand(-100, 0),
+        volume: 0.2,
+        detune: rand(-100, 0),
       });
     },
   };
