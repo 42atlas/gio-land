@@ -1,15 +1,12 @@
 * {
   background-color: rgb(134, 135, 247);
   font-family: "Press Start 2P", cursive;
+  color: #ffffff;
 }
 
 /* body {
   align-self: center;
 } */
-
-.title {
-  color: #ffffff;
-}
 
 .canvas-container {
   width: 100%;
@@ -17,7 +14,50 @@
   margin: auto;
   display: flex;
   justify-content: center;
-  /* align-self: center; */
+  align-self: center;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: space-around; */
+  /* background-color: green; */
+  /* margin-top: 5%; */
+  /* align-content: center; */
+
+  /* justify-self: center; */
+}
+
+.flexbox {
+  margin: 1%;
+  /* border: 3px solid #ffffff;
+  background-color: blue; */
+}
+
+.row1 {
+  text-align: center;
+  /* font-size: 10px; */
+  /* border-color: #ffffff;
+  border-style: solid; */
+}
+
+.row2 {
+  /* min-height: auto;
+  width: 100%;
+  flex-shrink: 0;
+  align-self: center;
+  display: flex; */
+  text-align: center;
+  border-color: #ffffff;
+  border-style: solid;
+}
+
+.row3 {
+  text-align: center;
+  /* font-size: 10px; */
+  /* border-color: #ffffff;
+  border-style: solid; */
 }
 
 
