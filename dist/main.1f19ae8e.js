@@ -149,6 +149,7 @@ loadSprite("cloud", "cloud.png");
 loadSprite("castle", "castle.png");
 loadSprite("noce", "noce.png");
 loadSprite("racchetta", "racchetta.png");
+loadSprite("pizza", "pizza.png");
 /* loadRoot("sounds/"); */
 
 loadSound("mushroom", "mushroom.wav");
@@ -161,13 +162,14 @@ loadSound("stageclear", "stageclear.wav");
 loadSound("goodbox", "goodbox.wav");
 loadSound("getsmall", "getsmall.wav");
 loadSound("flower-chomp", "flower-chomp.mp3");
-loadSound("noce", "noce.wav"); //soundtrack
+loadSound("noce", "noce.wav");
+loadSound("pizzas", "pizza.mp3"); //soundtrack
 
 loadSound("level0", "level0.mp3");
 loadSound("level1", "level1.mp3");
 loadSound("level2", "level2.mp3");
 loadSound("level3", "level3.mp3");
-var LEVELS = [["                                                                                                                                                                                                           ", "                                                                                                                                                                                                           ", "                                                                                                                                                                                                           ", "                                                                                                                                                                                                           ", "                                                                                                                                                                                                           ", "                                                                                                                                                                                                           ", "                                                                                                                                       ?                                                                   ", "      -?-b-                 ?-                                                  -??-                                   ?                                                                                   ", "                                                      ?          ?                                ?                                                                                                        ", "                                                             ?                                               -f-  ?                                               ---      ???   ---                       ", "                                                 -                                                                                               _                                                         ", "                                   _                                                                                                _     _      |                                                         ", "                       _           |    _                _               _                                                  _       |     |      |             -                                           ", "                E      |           |    |      E   E     |           E   |              A     _         _   A               |       |     |      |             |          E E E E                 H        ", "=================================================================================================  ===========================   =====   ===   ============================================================", "=================================================================================================  ===========================   =====   ===   ============================================================"], ["                                                                                                                                                                                                            ", "                                                                                                                                                                                                            ", "                                                                                                                                                                                                            ", "                                         ?                                                                                   -?-                                                                            ", "                                                                   f                                                                                                                                        ", "                                   -?-                                                                                                                  ?                                                   ", "                                                                                                               -?-                                                                                          ", "      -?-b-                  -?-                                                                   b                               E                                                                        ", "                                                                                                                                  -?-                                ---                                    ", "                                                                                 -?-                                E                                                                                       ", "                                                           -                                                       -?-                                                                                      ", "                                                           |                              -                                                                                                                 ", "       _                                            _      |                              |                                     _                                                                           ", "       |                            A               |      |    E    E                    |          A           A   _          | A          A             E              A                       H         ", "================     =========================================================     ======================================    ===============================================================================", "================     =========================================================     ======================================    ==============================================================================="], ["                                                                                                                                                                                                            ", "                                                                                                                                                                                                            ", "                                                                                                                                                                                                            ", "                                       ?                                                                                                                                                                    ", "                                                                                                                                                                                                            ", "                                   -?-             -?-         -?-          -?-                                                                                                                             ", "                                                                                                                                                                                ?      ?                    ", "      -?-f-                  -b-                                                         ---?--?--?--?                                                                        ?                             ", "                                                                                                                                          ?-f-?                                                             ", "                                                                                                                          ?-                                                                                ", "                                                                                                                                                                                                            ", "                             Y           Y            Y                   Y                Y       Y       Y                                                                                                ", "       _                     _           _            _        _          _                _       _       _                         _                                                                      ", "       |                     |    E      |    A       |        |    A     |     A          |       |       |   E                     |                              D                             H         ", "================     ====================================     =======================================================   =======   ==========================================================================", "================     ====================================     =======================================================   =======   =========================================================================="], ["                                                                                                                                                                                                            ", "                                                                                                                                                                                                            ", "                                                                                                                                                                                                            ", "                                                                                                                                                                                                            ", "                                               ????????????????????????????????????                                                                                                                         ", "                                   -?-                                                                                                                                                                      ", "                                                                                                                                                                                                            ", "      -?-b-                  -?-                                                         -f-                                              --?-                                                              ", "                                                                                                                                                                                                            ", "                                                                                                                                                                                                            ", "                                                                                                                      _                                                                                     ", "                                                                                                         _            |                                      _                                              ", "       _               _                                              _          _                       |            |                  _                   |                                              ", "       |               |          E  E  E  EE  E   D   A    A    A    |     D    |                       |            |         D        |        D          |        D                           H         ", "================     ================================================================  ==========    =========   ===========================================================================================", "================     ================================================================  ==========    =========   ==========================================================================================="]];
+var LEVELS = [["                                                                                                                                                                                                        ", "                                                                                                                                                                                                        ", "                                                                                                                                                                                                        ", "                                                                                                                                                                                                        ", "                                                                                                                                                                                                        ", "                                                                                                                                                                                                        ", "                                                                                                                                       ?                                                                ", "      -?-b-                 ?-                                                  -??-                                   ?                                                                                ", "                                                      ?          ?                                ?                                                                                                     ", "                                                             ?                                               -f-  ?                                               -u-      ???   -?-                    ", "                                                 -                                                                                               _                                                      ", "                                   _                                                                                                _     _      |                                                      ", "                       _           |    _                _               _                                                  _       |     |      |             _                                        ", "                E      |           |    |      E   E     |           E   |              A     _         _   A               |       |     |      |             |        D                   A  H        ", "=================================================================================================  ===========================   =====   ===========   =================================================", "=================================================================================================  ===========================   =====   ===========   ================================================="], ["                                                                                                                                                                                                            ", "                                                                                                                                                                                                            ", "                                      ?                                                                                                                                                                     ", "                                                                                                                                                                                                            ", "                                                                                                                                                                                                            ", "                                   -?-                                                                                  --                              ?                                                   ", "                                                                                                               -?-                                                                                          ", "      -?-b-                  -?-                                   f                                b                                                                                                       ", "                                                                                                                                 -?-                  ?              ---                                    ", "                                               u                                 -?-                                E                           ?                             ?                             ", "                                                           _                                                       -?-                                                           ?f                         ", "                                                           |                              _                                                                                                                 ", "       _                                            _      |                              |                                     _                       _                                                   ", "       |                            A               |      |    E    E                    |          A           A   _          | A          A          |  E              A                    A  H         ", "================     ============================================================     ======================================    ===================================   ======================================", "================     ============================================================     ======================================    ===================================   ======================================"], ["                                                                                                                                                                                                            ", "                                                                                                                                                                                                            ", "                                                                                                                                                                                                            ", "                                       ?                                                                                                                                                                    ", "                                                                                                                                                                                                            ", "                                   -?-             -?-         -?-          -?-                                                                                                                             ", "                                                                                                                                                                                 ?      ?                   ", "      -?-f-                  -b-                                                         -?--?--?--?                                                                         ?                              ", "                                                                                                                                          ?-f-?                                                             ", "                                                                                                                          ?-                          b             u                                       ", "                                                                                                                                                             -?-             ?                              ", "                             Y           Y            Y                   Y                Y       Y       Y                                                                                                ", "       _                     _           _            _        _          _                _       _       _                         _                                                                      ", "       |                     |    E      |    A       |        |    A     |     A          |       |       |   E                     |           D        D         D                           A H         ", "================     ====================================     =================================================================   ===============================================  =========================", "================     ====================================     =================================================================   ===============================================  ========================="], ["                                                                                                                                                                                                            ", "                                                                                                                                                                                                            ", "                                                                                                                                                                                                            ", "                                                                                                                                                                                                            ", "                                               ????????????b???????u???????????????                                                                                                                         ", "                                   -?-                                                                                                                                                                      ", "                                                                                                                  -?-                                                                                       ", "      -?-b-                  -?-                                                         -f-          --                                    --?-                                                            ", "                                                                                                                                u                                               fbf?-b                      ", "                                                                                                                                                                                                            ", "                                                                                                                      _                                                                                     ", "                                                                      Y          Y                       _            |                                      _                                              ", "       _               _                  _                           _          _                       |            |                  _                   |                                              ", "       |               |          E       |    E       A         A    |     D    |                       |            |         D        |        D          |     _  D             D          A  H         ", "================     ================================================================  ==========    =========   ==============================================  ===========================================", "================     ================================================================  ==========    =========   ==============================================  ==========================================="]];
 var levelConf = {
   // grid size
   width: 16,
@@ -195,6 +197,9 @@ var levelConf = {
   f: function f() {
     return [sprite("questionBox"), area(), solid(), origin("bot"), "questionBox", "flowerBox", "wall"];
   },
+  u: function u() {
+    return [sprite("questionBox"), area(), solid(), origin("bot"), "questionBox", "pizzaBox", "wall"];
+  },
   "!": function _() {
     return [sprite("emptyBox"), area(), solid(), bump(), origin("bot"), "emptyBox", "wall"];
   },
@@ -208,6 +213,9 @@ var levelConf = {
   },
   F: function F() {
     return [sprite("Flower"), area(), solid(), body(), cleanup(), origin("bot"), "Flower"];
+  },
+  U: function U() {
+    return [sprite("pizza"), area(), solid(), body(), cleanup(), origin("bot"), "pizza"];
   },
   "|": function _() {
     return [sprite("pipeBottom"), area(), solid(), origin("bot"), "pipe", "wall"];
@@ -237,7 +245,11 @@ var levelConf = {
     }), area({
       width: 20,
       height: 28
-    }), solid(), body(), patrol(30), dito(), state("move", ["idle", "attack", "move"]), origin("bot"), "badGuy", "enemy", "dito"];
+    }), solid(), body(), patrol(50), dito(),
+    /* state("move", ["idle", "attack", "move"]), */
+    origin("bot"), "badGuy", "enemy"
+    /* "dito", */
+    ];
   },
   Y: function Y() {
     return [sprite("enemies", {
@@ -285,21 +297,21 @@ go("start"); //scene LOSE
 scene("lose", function (score, time) {
   add([sprite("mario", {
     frame: 6
-  }), pos(width() / 2, height() / 2 - 100), scale(2), origin("center")]); // display score
+  }), pos(width() / 2, height() / 2 - 80), scale(2), origin("center")]); // display score
 
   add([text("Score:".concat(score), {
     size: 8,
     font: "sink"
-  }), pos(width() / 2, height() / 2 - 40), scale(2), origin("center"), setData("score", score)]); // display time
+  }), pos(width() / 2, height() / 2 - 30), scale(2), origin("center"), setData("score", score)]); // display time
 
   add([text("Time:".concat(time.toFixed(2)), {
     size: 8,
     font: "sink"
-  }), pos(width() / 2, height() / 2 - 10), scale(2), origin("center"), setData("time", time.toFixed(2))]);
+  }), pos(width() / 2, height() / 2 - 0), scale(2), origin("center"), setData("time", time.toFixed(2))]);
   add([text("Press enter to play again", {
     size: 6,
     font: "sink"
-  }), pos(width() / 2, height() / 2 - 60), scale(2), origin("center"), setData("time", time.toFixed(2))]);
+  }), pos(width() / 2, height() / 2 + 60), scale(2), origin("center"), setData("time", time.toFixed(2))]);
   onKeyRelease("enter", function () {
     return go("game");
   }); //highscore
@@ -363,23 +375,23 @@ scene("lose", function (score, time) {
 }); //scene WIN
 
 scene("win", function (score, time) {
-  add([text("YOU WON!"), pos(width() / 2, height() / 2 - 120), scale(2), origin("center")]);
+  add([text("YOU WON!"), pos(width() / 2, height() / 2 - 100), scale(2), origin("center")]);
   add([sprite("mario", {
     frame: 13
-  }), pos(width() / 2, height() / 2 - 100), scale(2), origin("center")]);
+  }), pos(width() / 2, height() / 2 - 60), scale(2), origin("center")]);
   add([text("Score:".concat(score), {
     size: 8,
     font: "sink"
-  }), pos(width() / 2, height() / 2 - 40), scale(2), origin("center"), setData("score", score)]); // display time
+  }), pos(width() / 2, height() / 2 - 20), scale(2), origin("center"), setData("score", score)]); // display time
 
   add([text("Time:".concat(time.toFixed(2)), {
     size: 8,
     font: "sink"
-  }), pos(width() / 2, height() / 2 - 10), scale(2), origin("center"), setData("time", time.toFixed(2))]);
+  }), pos(width() / 2, height() / 2 + 10), scale(2), origin("center"), setData("time", time.toFixed(2))]);
   add([text("Press enter to play again", {
     size: 6,
     font: "sink"
-  }), pos(width() / 2, height() / 2 - 60), scale(2), origin("center"), setData("time", time.toFixed(2))]);
+  }), pos(width() / 2, height() / 2 + 70), scale(2), origin("center"), setData("time", time.toFixed(2))]);
   onKeyRelease("enter", function () {
     return go("game");
   });
@@ -408,16 +420,36 @@ scene("game", function () {
   add([sprite("cloud"), pos(1190, 50), layer("bg")]);
   add([sprite("cloud"), pos(1300, 80), layer("bg")]);
   add([sprite("cloud"), pos(1420, 60), layer("bg")]);
+  add([sprite("cloud"), pos(1560, 50), layer("bg")]);
+  add([sprite("cloud"), pos(1720, 60), layer("bg")]);
+  add([sprite("cloud"), pos(1950, 40), layer("bg")]);
+  add([sprite("cloud"), pos(1820, 50), layer("bg")]);
+  add([sprite("cloud"), pos(2000, 70), layer("bg")]);
+  add([sprite("cloud"), pos(2200, 40), layer("bg")]);
+  add([sprite("cloud"), pos(2350, 70), layer("bg")]);
+  add([sprite("cloud"), pos(2450, 50), layer("bg")]);
+  add([sprite("cloud"), pos(2600, 80), layer("bg")]);
+  add([sprite("cloud"), pos(3200, 60), layer("bg")]);
   add([sprite("hill"), pos(32, 208), layer("bg"), origin("bot")]);
   add([sprite("hill"), pos(409, 208), layer("bg"), origin("bot")]);
   add([sprite("hill"), pos(803, 208), layer("bg"), origin("bot")]);
   add([sprite("hill"), pos(1200, 208), layer("bg"), origin("bot")]);
   add([sprite("hill"), pos(1500, 208), layer("bg"), origin("bot")]);
+  add([sprite("hill"), pos(1920, 208), layer("bg"), origin("bot")]);
+  add([sprite("hill"), pos(2300, 208), layer("bg"), origin("bot")]);
+  add([sprite("hill"), pos(2700, 208), layer("bg"), origin("bot")]);
+  add([sprite("hill"), pos(3000, 208), layer("bg"), origin("bot")]);
+  add([sprite("hill"), pos(3500, 208), layer("bg"), origin("bot")]);
   add([sprite("shrubbery"), pos(200, 208), layer("bg"), origin("bot")]);
   add([sprite("shrubbery"), pos(680, 208), layer("bg"), origin("bot")]);
   add([sprite("shrubbery"), pos(480, 208), layer("bg"), origin("bot")]);
   add([sprite("shrubbery"), pos(1080, 208), layer("bg"), origin("bot")]);
   add([sprite("shrubbery"), pos(1250, 208), layer("bg"), origin("bot")]);
+  add([sprite("shrubbery"), pos(1480, 208), layer("bg"), origin("bot")]);
+  add([sprite("shrubbery"), pos(1904, 208), layer("bg"), origin("bot")]);
+  add([sprite("shrubbery"), pos(2230, 208), layer("bg"), origin("bot")]);
+  add([sprite("shrubbery"), pos(2940, 208), layer("bg"), origin("bot")]);
+  add([sprite("shrubbery"), pos(3600, 208), layer("bg"), origin("bot")]);
   add([text("Level " + (levelNumber + 1), {
     size: 18
   }), pos(vec2(160, 120)), color(255, 255, 255), origin("center"), layer("ui"), lifespan(1, {
@@ -480,7 +512,7 @@ scene("game", function () {
   });
   onKeyPress("up", function () {
     if (player.isAlive && player.isGrounded()) {
-      player.jump(600);
+      player.jump(630);
       canSquash = true;
     }
 
@@ -769,6 +801,12 @@ scene("game", function () {
           volume: 0.7,
           detune: rand(-400, 100)
         });
+      } else if (obj.is("pizzaBox")) {
+        level.spawn("U", obj.gridPos.sub(0, 1));
+        play("goodbox", {
+          volume: 0.7,
+          detune: rand(-400, 100)
+        });
       }
 
       var pos = obj.gridPos;
@@ -776,7 +814,7 @@ scene("game", function () {
       var box = level.spawn("!", pos);
       box.bump();
     }
-  }); //fungo & fiore
+  }); //fungo & fiore & pizza
 
   player.onCollide("bigMushy", function (mushy) {
     destroy(mushy);
@@ -793,6 +831,17 @@ scene("game", function () {
       volume: 0.2,
       detune: rand(-400, 100)
     });
+  });
+  player.onCollide("pizza", function (pizza) {
+    destroy(pizza);
+    updateScore(55);
+    play("pizzas", {
+      volume: 0.2,
+      detune: rand(-400, 100)
+    });
+    add([text("55 POINTS", {
+      size: 12
+    }), pos(toWorld(vec2(160, 120))), color(255, 255, 255), origin("center"), layer("ui")]);
   }); //castle
 
   player.onCollide("castle", function (castle, side) {
@@ -898,7 +947,9 @@ function ami() {
 function dito() {
   return {
     id: "dito",
-    require: ["pos", "area", "sprite", "patrol", "state"],
+    require: ["pos", "area", "sprite", "patrol"
+    /* , "state" */
+    ],
     isAlive: true,
     update: function update() {},
     squash: function squash() {
@@ -1129,7 +1180,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60350" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57526" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
