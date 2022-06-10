@@ -123,12 +123,13 @@ kaboom({
   background: [134, 135, 247],
   width: 320,
   height: 240,
-  scale: 4,
+  scale: 3,
   canvas: document.getElementById("game"),
   font: "sink",
   fullscreen: true,
   scaleMode: "stretch"
 });
+var MAP_WIDTH = 320;
 /* loadRoot("sprites/"); */
 
 loadAseprite("mario", "Mario.png", "Mario.json");
@@ -146,6 +147,8 @@ loadSprite("shrubbery", "shrubbery.png");
 loadSprite("hill", "hill.png");
 loadSprite("cloud", "cloud.png");
 loadSprite("castle", "castle.png");
+loadSprite("noce", "noce.png");
+loadSprite("racchetta", "racchetta.png");
 /* loadRoot("sounds/"); */
 
 loadSound("mushroom", "mushroom.wav");
@@ -157,13 +160,14 @@ loadSound("gameover", "gameover.wav");
 loadSound("stageclear", "stageclear.wav");
 loadSound("goodbox", "goodbox.wav");
 loadSound("getsmall", "getsmall.wav");
-loadSound("flower-chomp", "flower-chomp.mp3"); //soundtrack
+loadSound("flower-chomp", "flower-chomp.mp3");
+loadSound("noce", "noce.wav"); //soundtrack
 
 loadSound("level0", "level0.mp3");
 loadSound("level1", "level1.mp3");
 loadSound("level2", "level2.mp3");
 loadSound("level3", "level3.mp3");
-var LEVELS = [["                                                                                                  ", "                                                                                                  ", "                                                                                                  ", "                                                                                                  ", "                                                                                                  ", "                                                                                                  ", "                                                                                                  ", "     f-?-b-                                                                                       ", "                                                      ?        ?                                  ", "                                                           ?                                      ", "                                        _                                                         ", "             Y                     _    |                                                         ", "             _         _           |    |                _                                        ", "             |         |E          |    |      E   E     |                            H           ", "================     =============================================================================", "================     ============================================================================="], ["                                                                                             ", "                                                                                             ", "                                                                                             ", "                                       ?                                                     ", "                                                                                             ", "                                   -?-                                                       ", "                                                                                             ", "      -?-b-                  -?-                                                             ", "                                                                                             ", "                                                                                             ", "                                                                                             ", "                                                                                             ", "       _                                            _                                        ", "       |                                            |          E    E            H           ", "================     ========================================================================", "================     ========================================================================"]];
+var LEVELS = [["                                                                                                                                                                                                           ", "                                                                                                                                                                                                           ", "                                                                                                                                                                                                           ", "                                                                                                                                                                                                           ", "                                                                                                                                                                                                           ", "                                                                                                                                                                                                           ", "                                                                                                                                       ?                                                                   ", "      -?-b-                 ?-                                                  -??-                                   ?                                                                                   ", "                                                      ?          ?                                ?                                                                                                        ", "                                                             ?                                               -f-  ?                                               ---      ???   ---                       ", "                                                 -                                                                                               _                                                         ", "                                   _                                                                                                _     _      |                                                         ", "                       _           |    _                _               _                                                  _       |     |      |             -                                           ", "                E      |           |    |      E   E     |           E   |              A     _         _   A               |       |     |      |             |          E E E E                 H        ", "=================================================================================================  ===========================   =====   ===   ============================================================", "=================================================================================================  ===========================   =====   ===   ============================================================"], ["                                                                                                                                                                                                            ", "                                                                                                                                                                                                            ", "                                                                                                                                                                                                            ", "                                         ?                                                                                   -?-                                                                            ", "                                                                   f                                                                                                                                        ", "                                   -?-                                                                                                                  ?                                                   ", "                                                                                                               -?-                                                                                          ", "      -?-b-                  -?-                                                                   b                               E                                                                        ", "                                                                                                                                  -?-                                ---                                    ", "                                                                                 -?-                                E                                                                                       ", "                                                           -                                                       -?-                                                                                      ", "                                                           |                              -                                                                                                                 ", "       _                                            _      |                              |                                     _                                                                           ", "       |                            A               |      |    E    E                    |          A           A   _          | A          A             E              A                       H         ", "================     =========================================================     ======================================    ===============================================================================", "================     =========================================================     ======================================    ==============================================================================="], ["                                                                                                                                                                                                            ", "                                                                                                                                                                                                            ", "                                                                                                                                                                                                            ", "                                       ?                                                                                                                                                                    ", "                                                                                                                                                                                                            ", "                                   -?-             -?-         -?-          -?-                                                                                                                             ", "                                                                                                                                                                                ?      ?                    ", "      -?-f-                  -b-                                                         ---?--?--?--?                                                                        ?                             ", "                                                                                                                                          ?-f-?                                                             ", "                                                                                                                          ?-                                                                                ", "                                                                                                                                                                                                            ", "                             Y           Y            Y                   Y                Y       Y       Y                                                                                                ", "       _                     _           _            _        _          _                _       _       _                         _                                                                      ", "       |                     |    E      |    A       |        |    A     |     A          |       |       |   E                     |                              D                             H         ", "================     ====================================     =======================================================   =======   ==========================================================================", "================     ====================================     =======================================================   =======   =========================================================================="], ["                                                                                                                                                                                                            ", "                                                                                                                                                                                                            ", "                                                                                                                                                                                                            ", "                                                                                                                                                                                                            ", "                                               ????????????????????????????????????                                                                                                                         ", "                                   -?-                                                                                                                                                                      ", "                                                                                                                                                                                                            ", "      -?-b-                  -?-                                                         -f-                                              --?-                                                              ", "                                                                                                                                                                                                            ", "                                                                                                                                                                                                            ", "                                                                                                                      _                                                                                     ", "                                                                                                         _            |                                      _                                              ", "       _               _                                              _          _                       |            |                  _                   |                                              ", "       |               |          E  E  E  EE  E   D   A    A    A    |     D    |                       |            |         D        |        D          |        D                           H         ", "================     ================================================================  ==========    =========   ===========================================================================================", "================     ================================================================  ==========    =========   ==========================================================================================="]];
 var levelConf = {
   // grid size
   width: 16,
@@ -171,10 +175,10 @@ var levelConf = {
   pos: vec2(0, 0),
   // define each object as a list of components
   "=": function _() {
-    return [sprite("ground"), area(), solid(), origin("bot"), "ground"];
+    return [sprite("ground"), area(), solid(), origin("bot"), "ground", "wall"];
   },
   "-": function _() {
-    return [sprite("brick"), area(), solid(), origin("bot"), "brick"];
+    return [sprite("brick"), area(), solid(), origin("bot"), "brick", "wall"];
   },
   H: function H() {
     return [sprite("castle"), area({
@@ -183,16 +187,16 @@ var levelConf = {
     }), origin("bot"), "castle"];
   },
   "?": function _() {
-    return [sprite("questionBox"), area(), solid(), origin("bot"), "questionBox", "coinBox"];
+    return [sprite("questionBox"), area(), solid(), origin("bot"), "questionBox", "coinBox", "wall"];
   },
   b: function b() {
-    return [sprite("questionBox"), area(), solid(), origin("bot"), "questionBox", "mushyBox"];
+    return [sprite("questionBox"), area(), solid(), origin("bot"), "questionBox", "mushyBox", "wall"];
   },
   f: function f() {
-    return [sprite("questionBox"), area(), solid(), origin("bot"), "questionBox", "flowerBox"];
+    return [sprite("questionBox"), area(), solid(), origin("bot"), "questionBox", "flowerBox", "wall"];
   },
   "!": function _() {
-    return [sprite("emptyBox"), area(), solid(), bump(), origin("bot"), "emptyBox"];
+    return [sprite("emptyBox"), area(), solid(), bump(), origin("bot"), "emptyBox", "wall"];
   },
   c: function c() {
     return [sprite("coin"), area(), solid(), bump(64, 8), cleanup(), lifespan(1, {
@@ -206,10 +210,10 @@ var levelConf = {
     return [sprite("Flower"), area(), solid(), body(), cleanup(), origin("bot"), "Flower"];
   },
   "|": function _() {
-    return [sprite("pipeBottom"), area(), solid(), origin("bot"), "pipe"];
+    return [sprite("pipeBottom"), area(), solid(), origin("bot"), "pipe", "wall"];
   },
   _: function _() {
-    return [sprite("pipeTop"), area(), solid(), origin("bot"), "pipe"];
+    return [sprite("pipeTop"), area(), solid(), origin("bot"), "pipe", "wall"];
   },
   E: function E() {
     return [sprite("enemies", {
@@ -217,7 +221,7 @@ var levelConf = {
     }), area({
       width: 20,
       height: 24
-    }), solid(), body(), patrol(50), tarma(), origin("bot"), "badGuy"];
+    }), solid(), body(), patrol(50), tarma(), origin("bot"), "badGuy", "enemy"];
   },
   A: function A() {
     return [sprite("enemies", {
@@ -225,7 +229,7 @@ var levelConf = {
     }), area({
       width: 26,
       height: 20
-    }), solid(), body(), patrol(80), ami(), origin("bot"), "badGuy"];
+    }), solid(), body(), patrol(100), ami(), origin("bot"), "badGuy", "enemy"];
   },
   D: function D() {
     return [sprite("enemies", {
@@ -233,7 +237,7 @@ var levelConf = {
     }), area({
       width: 20,
       height: 28
-    }), solid(), body(), patrol(20), dito(), origin("bot"), "badGuy"];
+    }), solid(), body(), patrol(30), dito(), state("move", ["idle", "attack", "move"]), origin("bot"), "badGuy", "enemy", "dito"];
   },
   Y: function Y() {
     return [sprite("enemies", {
@@ -243,7 +247,9 @@ var levelConf = {
       height: 28
     }),
     /* solid(), */
-    shark(), origin("top"), "badGuy", {
+
+    /* body(), */
+    shark(), origin("top"), "shark", "badGuyShark", "enemy", {
       speed: 20
     }];
   },
@@ -253,26 +259,142 @@ var levelConf = {
     }), area({
       width: 16,
       height: 16
-    }), body(), mario(), bump(150, 20, false), origin("bot"), "player"];
+    }), body(), mario(), bump(150, 20, false), origin("bot"), "player", {
+      score: 0
+    }];
   }
-};
+}; //scene START
+
 scene("start", function () {
   add([text("Press enter to play", {
-    size: 18
-  }), pos(width() / 2, height() / 2), origin("center"), color(255, 255, 255)]);
+    size: 10
+  }), pos(160, 100), origin("center"), color(255, 255, 255)]);
+  add([text("Use the arrows to move", {
+    size: 8
+  }), pos(160, 140), origin("center"), color(255, 255, 255)]);
+  add([text("and the spacebar eventually", {
+    size: 8
+  }), pos(160, 150), origin("center"), color(255, 255, 255)]);
   onKeyRelease("enter", function () {
     go("game");
   });
+  /* onClick(() => go("game")); */
 });
-go("start");
+go("start"); //scene LOSE
+
+scene("lose", function (score, time) {
+  add([sprite("mario", {
+    frame: 6
+  }), pos(width() / 2, height() / 2 - 100), scale(2), origin("center")]); // display score
+
+  add([text("Score:".concat(score), {
+    size: 8,
+    font: "sink"
+  }), pos(width() / 2, height() / 2 - 40), scale(2), origin("center"), setData("score", score)]); // display time
+
+  add([text("Time:".concat(time.toFixed(2)), {
+    size: 8,
+    font: "sink"
+  }), pos(width() / 2, height() / 2 - 10), scale(2), origin("center"), setData("time", time.toFixed(2))]);
+  add([text("Press enter to play again", {
+    size: 6,
+    font: "sink"
+  }), pos(width() / 2, height() / 2 - 60), scale(2), origin("center"), setData("time", time.toFixed(2))]);
+  onKeyRelease("enter", function () {
+    return go("game");
+  }); //highscore
+
+  /*   
+  add([
+    text(`Insert name to record highscore:`, { size: 5, font: "sink" }),
+    pos(width() / 2, height() / 2 + 20),
+    scale(2),
+    origin("center"),
+  ]);
+    const input = add([
+    text("click me and write", { size: 8, font: "sink" }),
+    pos(width() / 2, height() / 2 + 40),
+    scale(2),
+    origin("center"),
+  ]);
+  
+  addButton("Send", vec2(width() / 2, height() / 2 + 60), () => {
+    setData("name", input.text);
+    debug.log("Yea, check the highscore under the game!");
+  });
+  addButton("Start Again", vec2(width() / 2, height() / 2 + 80), () =>
+    go("game")
+  );
+    onCharInput((ch) => {
+    input.text += ch;
+  });
+    onKeyPressRepeat("backspace", () => {
+    input.text = input.text.substring(0, input.text.length - 1);
+  }); */
+
+  /*  onKeyPress("enter", () => go("game")); */
+  //buttons function
+
+  /* function addButton(txt, p, f) {
+    const btn = add([
+      text(txt),
+      pos(p),
+      area({ cursor: "pointer" }),
+      scale(1),
+      origin("center"),
+    ]);
+      btn.onClick(f);
+      btn.onUpdate(() => {
+      if (btn.isHovering()) {
+        const t = rand(10) * 10;
+        btn.color = rgb(
+          wave(0, 255, t),
+          wave(0, 255, t + 2),
+          wave(0, 255, t + 4)
+        );
+        btn.scale = vec2(1.2);
+      } else {
+        btn.scale = vec2(1);
+        btn.color = rgb();
+      }
+    });
+  }
+    onUpdate(() => cursor("default")); */
+}); //scene WIN
+
+scene("win", function (score, time) {
+  add([text("YOU WON!"), pos(width() / 2, height() / 2 - 120), scale(2), origin("center")]);
+  add([sprite("mario", {
+    frame: 13
+  }), pos(width() / 2, height() / 2 - 100), scale(2), origin("center")]);
+  add([text("Score:".concat(score), {
+    size: 8,
+    font: "sink"
+  }), pos(width() / 2, height() / 2 - 40), scale(2), origin("center"), setData("score", score)]); // display time
+
+  add([text("Time:".concat(time.toFixed(2)), {
+    size: 8,
+    font: "sink"
+  }), pos(width() / 2, height() / 2 - 10), scale(2), origin("center"), setData("time", time.toFixed(2))]);
+  add([text("Press enter to play again", {
+    size: 6,
+    font: "sink"
+  }), pos(width() / 2, height() / 2 - 60), scale(2), origin("center"), setData("time", time.toFixed(2))]);
+  onKeyRelease("enter", function () {
+    return go("game");
+  });
+}); //scene GAME
+
 scene("game", function () {
   var levelNumber = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+  var score = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+  var time = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
   layers(["bg", "game", "ui"], "game");
   /* gravity(2200); */
 
   var level = addLevel(LEVELS[levelNumber], levelConf);
   var music = play("level".concat(levelNumber), {
-    volume: 0.1,
+    volume: 0.2,
     detune: rand(0, 0)
   });
   music.play();
@@ -300,16 +422,55 @@ scene("game", function () {
     size: 18
   }), pos(vec2(160, 120)), color(255, 255, 255), origin("center"), layer("ui"), lifespan(1, {
     fade: 0.5
-  })]); //player
+  })]); //timer
+
+  add([text("TIME: ", {
+    size: 8,
+    font: "sink"
+  }), pos(20, 10), origin("center"), layer("ui"), fixed()]);
+  var timer = add([text(time, {
+    size: 8,
+    font: "sink"
+  }), pos(50, 10), fixed(), {
+    time: 0
+  }, origin("center"), layer("ui")]);
+  timer.onUpdate(function () {
+    time += dt();
+    timer.text = time.toFixed(2);
+  }); //score
+
+  add([text("SCORE: ", {
+    size: 8,
+    font: "sink"
+  }), pos(140, 10), origin("center"), layer("ui"), fixed()]);
+  var scoreText = add([text(score, {
+    size: 8,
+    font: "sink"
+  }), pos(170, 10), origin("center"), layer("ui"), fixed()]);
+
+  function updateScore(points) {
+    score += points;
+    scoreText.text = score;
+  } //directions
+
+
+  var directions = {
+    LEFT: "left",
+    RIGHT: "right"
+  };
+  var current_direction = directions.RIGHT; //player
 
   var player = level.spawn("p", 1, 10);
   var SPEED = 100;
+  var BULLET_SPEED = 200;
   onKeyDown("right", function () {
+    current_direction = directions.RIGHT;
     if (player.isFrozen) return;
     player.flipX(false);
     player.move(SPEED, 0);
   });
   onKeyDown("left", function () {
+    current_direction = directions.LEFT;
     if (player.isFrozen) return;
     player.flipX(true);
 
@@ -318,7 +479,7 @@ scene("game", function () {
     }
   });
   onKeyPress("up", function () {
-    if (player.isAlive && player.grounded()) {
+    if (player.isAlive && player.isGrounded()) {
       player.jump(600);
       canSquash = true;
     }
@@ -327,10 +488,161 @@ scene("game", function () {
       volume: 0.05,
       detune: rand(-200, 0)
     });
-  }); //Killed
+  }); //grow
+
+  function grow(rate) {
+    return {
+      update: function update() {
+        var n = rate * dt();
+        this.scale.x += n;
+        this.scale.y += n;
+      }
+    };
+  } // explode
+
+
+  function addExplode(p, n, rad, size) {
+    for (var i = 0; i < n; i++) {
+      wait(rand(n * 0.1), function () {
+        for (var _i = 0; _i < 2; _i++) {
+          add([pos(
+          /* p.add(rand(vec2(-rad), vec2(rad))) */
+          p), rect(4, 4), outline(4), scale(1 * size, 1 * size), lifespan(0.1), grow(rand(10, 10) * size), origin("center")]);
+        }
+      });
+    }
+  } //shooting gio
+
+
+  function spawnBullet(p) {
+    if (current_direction == directions.LEFT) {
+      p = p.sub(10, 0);
+    } else if (current_direction == directions.RIGHT) {
+      p = p.add(10, 0);
+    }
+
+    add([sprite("noce"), area(), pos(p), origin("center"),
+    /* move(RIGHT, BULLET_SPEED), */
+    cleanup(), "bullet", {
+      bulletSpeed: current_direction == directions.LEFT ? -1 * BULLET_SPEED : BULLET_SPEED
+    }]);
+  }
+
+  onUpdate("bullet", function (b) {
+    b.move(b.bulletSpeed, 0);
+    /* if (b.pos.x < 0 || b.pos.x > MAP_WIDTH) {
+      destroy(b);
+    } */
+  });
+  onKeyPress("space", function () {
+    if (player.isFlamy) {
+      spawnBullet(player.pos.sub(-4, 10));
+      /* spawnBullet(player.pos.add(3, 0)); */
+
+      play("noce", {
+        volume: 0.1,
+        detune: rand(-1200, 1200)
+      });
+    }
+
+    wait(0.2), function () {
+      return;
+    };
+  });
+  onCollide("bullet", "enemy", function (b, e) {
+    destroy(b);
+    destroy(e);
+    addExplode(b.pos, 1, 24, 1);
+  });
+  onCollide("bullet", "wall", function (b, e) {
+    destroy(b);
+    addExplode(b.pos, 1, 24, 1);
+  }); //shooting dito
+
+  /*   const dito = get("dito");
+    function spawnRachet() {
+    if (player.exists()) {
+      const dir = player.pos.sub(dito.pos).unit();
+      add([
+        sprite("racchetta"),
+        area(),
+        pos(dito.pos),
+        origin("center"),
+        move(dir, BULLET_SPEED),
+        cleanup(),
+        "rachet",
+      ]);
+    }
+  }
+    onUpdate("rachet", (b) => {
+    b.move(b.bulletSpeed, 0);
+   
+  });
+    onUpdate("dito", (d) => {
+    spawnRachet(d.pos.sub(-4, 10));
+    
+    play("noce", {
+      volume: 0.1,
+      detune: rand(-1200, 1200),
+    });
+  });
+    onCollide("rachet", player, (b, e) => {
+    destroy(b);
+    killed();
+    addExplode(b.pos, 1, 24, 1);
+  });
+    onCollide("rachet", "wall", (b, e) => {
+    destroy(b);
+      addExplode(b.pos, 1, 24, 1);
+  }); */
+  //////////////////////////////
+
+  /*   const _dito = get("dito");
+    const DITO_SPEED = 160;
+    _dito.onStateEnter("idle", async () => {
+    await wait(0.5);
+    _dito.enterState("attack");
+  });
+  +_dito.onStateEnter("attack", async () => {
+    // Don't do anything if player doesn't exist anymore
+    if (player.exists()) {
+      const dir = player.pos.sub(dito.pos).unit();
+        add([
+        pos(dito.pos),
+        move(dir, BULLET_SPEED),
+        sprite("racchetta"),
+        area(),
+        cleanup(),
+        origin("center"),
+          "rachet",
+      ]);
+    }
+      await wait(1);
+    dito.enterState("move");
+  });
+    _dito.onStateEnter("move", async () => {
+    await wait(2);
+    _dito.enterState("idle");
+  });
+    // Like .onUpdate() which runs every frame, but only runs when the current state is "move"
+  // Here we move towards the player every frame if the current state is "move"
+  _dito.onStateUpdate("move", () => {
+    if (!player.exists()) return;
+    const dir = player.pos.sub(_dito.pos).unit();
+    _dito.move(dir.scale(DITO_SPEED));
+  });
+    // Have to manually call enterState() to trigger the onStateEnter("move") event we defined above.
+  _dito.enterState("move");
+    // Taking a bullet makes us disappear
+  player.onCollide("rachet", (bullet) => {
+    destroy(bullet);
+    killed();
+    addKaboom(bullet.pos);
+  }); */
+  //Killed
 
   function killed() {
-    // Mario is dead :(
+    // is dead :(
     if (player.isAlive == false) return; // Don't run it if mario is already dead
 
     player.die();
@@ -339,13 +651,13 @@ scene("game", function () {
       size: 24
     }), pos(toWorld(vec2(160, 120))), color(255, 255, 255), origin("center"), layer("ui")]);
     wait(3, function () {
-      go("start");
+      var totscore = score;
+      var tottime = time;
+      go("lose", totscore, tottime);
     });
-  }
+  } // camera settings
 
-  player.onFall(function () {
-    canSquash = true;
-  });
+
   player.onUpdate(function () {
     // center camera to player
     var currCam = camPos();
@@ -354,7 +666,7 @@ scene("game", function () {
       camPos(player.pos.x, currCam.y);
     }
 
-    if (player.isAlive && player.grounded()) {
+    if (player.isAlive && player.isGrounded()) {
       canSquash = false;
     } // Check if Mario has fallen off the screen
 
@@ -362,9 +674,12 @@ scene("game", function () {
     if (player.pos.y > height() - 16) {
       killed();
     }
-  });
-  var canSquash = false; //collision with badguy
+  }); //collision with badguys
 
+  var canSquash = false;
+  player.onFall(function () {
+    canSquash = true;
+  });
   player.onCollide("badGuy", function (baddy) {
     if (baddy.isAlive == false) return;
     if (player.isAlive == false) return;
@@ -379,7 +694,8 @@ scene("game", function () {
     } else {
       // Mario has been hurt
       if (player.isFlamy) {
-        wait(0.15, function () {
+        shake(10);
+        wait(0.25, function () {
           player.bigger();
           play("getsmall", {
             volume: 0.2,
@@ -387,7 +703,8 @@ scene("game", function () {
           });
         });
       } else if (player.isBig) {
-        wait(0.15, function () {
+        shake(10);
+        wait(0.25, function () {
           player.smaller();
           play("getsmall", {
             volume: 0.2,
@@ -396,15 +713,46 @@ scene("game", function () {
         });
       } else {
         // Mario is dead :(
+        shake(10);
         killed();
       }
     }
   });
+  player.onCollide("badGuyShark", function (baddy) {
+    if (baddy.isAlive == false) return;
+    if (player.isAlive == false) return; // Mario has been hurt
+
+    if (player.isFlamy) {
+      shake(10);
+      wait(0.25, function () {
+        player.bigger();
+        play("getsmall", {
+          volume: 0.2,
+          detune: rand(-100, 0)
+        });
+      });
+    } else if (player.isBig) {
+      shake(10);
+      wait(0.25, function () {
+        player.smaller();
+        play("getsmall", {
+          volume: 0.2,
+          detune: rand(-100, 0)
+        });
+      });
+    } else {
+      // Mario is dead :(
+      shake(10);
+      killed();
+    }
+  }); //headbutt
+
   player.on("headbutt", function (obj) {
     if (obj.is("questionBox")) {
       if (obj.is("coinBox")) {
         var coin = level.spawn("c", obj.gridPos.sub(0, 1));
         coin.bump();
+        updateScore(5);
         play("coin", {
           volume: 0.2,
           detune: rand(-400, 100)
@@ -428,7 +776,8 @@ scene("game", function () {
       var box = level.spawn("!", pos);
       box.bump();
     }
-  });
+  }); //fungo & fiore
+
   player.onCollide("bigMushy", function (mushy) {
     destroy(mushy);
     player.bigger();
@@ -458,16 +807,18 @@ scene("game", function () {
     }), pos(toWorld(vec2(160, 120))), color(255, 255, 255), origin("center"), layer("ui")]);
     wait(7, function () {
       var nextLevel = levelNumber + 1;
+      var totscore = score;
+      var tottime = time;
 
       if (nextLevel >= LEVELS.length) {
-        go("start");
+        go("win", totscore, tottime);
       } else {
-        go("game", nextLevel);
+        go("game", nextLevel, totscore, tottime);
       }
     });
   }); //shark move
 
-  action("shark", function (s) {
+  onUpdate("shark", function (s) {
     s.move(0, -s.speed);
 
     if (s.pos.y > 200 || s.pos.y < 150) {
@@ -547,7 +898,7 @@ function ami() {
 function dito() {
   return {
     id: "dito",
-    require: ["pos", "area", "sprite", "patrol"],
+    require: ["pos", "area", "sprite", "patrol", "state"],
     isAlive: true,
     update: function update() {},
     squash: function squash() {
@@ -569,7 +920,18 @@ function shark() {
     id: "shark",
     require: ["pos", "area", "sprite"],
     isAlive: true,
-    update: function update() {}
+    update: function update() {},
+    squash: function squash() {
+      this.isAlive = false;
+      this.unuse("patrol");
+      this.stop();
+      this.frame = 12;
+      this.area.width = 20;
+      this.area.height = 22;
+      this.use(lifespan(0.5, {
+        fade: 0.1
+      }));
+    }
   };
 } //general bump
 
@@ -622,6 +984,7 @@ function mario() {
     smallJumpFrame: 5,
     bigJumpFrame: 13,
     flameJumpFrame: 22,
+    flameShotFrame: 25,
 
     /* smallDieFrame: 6, */
     isBig: false,
@@ -634,10 +997,15 @@ function mario() {
         return;
       }
 
-      if (!this.grounded()) {
+      if (this.isFlamy && isKeyDown("space")) {
+        this.shooting();
+        return;
+      }
+
+      if (!this.isGrounded()) {
         this.jumping();
       } else {
-        if (keyIsDown("left") || keyIsDown("right")) {
+        if (isKeyDown("left") || isKeyDown("right")) {
           this.running();
         } else {
           this.standing();
@@ -651,6 +1019,7 @@ function mario() {
       this.area.height = 22;
     },
     flamy: function flamy() {
+      this.isShooting = false;
       this.isBig = false;
       this.isFlamy = true;
       this.area.width = 20;
@@ -687,6 +1056,13 @@ function mario() {
       }
       /* this.frame = this.isBig ? this.bigJumpFrame : this.smallJumpFrame; */
 
+    },
+    shooting: function shooting() {
+      this.stop();
+
+      if (this.isFlamy) {
+        this.frame = this.flameShotFrame;
+      }
     },
     running: function running() {
       var animation;
@@ -753,7 +1129,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58565" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60350" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
