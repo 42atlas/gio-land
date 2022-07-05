@@ -59,3 +59,7 @@
   /* border-color: #ffffff;
   border-style: solid; */
 }
+
+a {
+  text-decoration: none;
+}
