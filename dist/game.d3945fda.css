@@ -37,6 +37,7 @@
 
 .row1 {
   text-align: center;
+  margin-top:0px;
   /* font-size: 10px; */
   /* border-color: #ffffff;
   border-style: solid; */
@@ -48,6 +49,7 @@
   flex-shrink: 0;
   align-self: center;
   display: flex; */
+  margin-top:-20px;
   text-align: center;
   border-color: #ffffff;
   border-style: solid;
